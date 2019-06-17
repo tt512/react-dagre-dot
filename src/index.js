@@ -3,28 +3,30 @@ import PropTypes from "prop-types";
 import * as dagreD3 from "dagre-d3";
 import * as d3 from "d3";
 import graphlibDot from "graphlib-dot";
+import css from "styled-jsx/css";
 
-const css = `
-.node rect,
-.node circle,
-.node ellipse {
-  stroke: #333;
-  fill: #fff;
-  stroke-width: 1.5px;
-}
+const styles = css`
+  svg :global(.node rect),
+  svg :global(.node circle),
+  svg :global(.node ellipse) {
+    stroke: #333;
+    fill: #fff;
+    stroke-width: 1.5px;
+  }
 
-.cluster rect {
-  stroke: #333;
-  fill: #000;
-  fill-opacity: 0.1;
-  stroke-width: 1.5px;
-}
+  svg :global(.cluster rect) {
+    stroke: #333;
+    fill: #000;
+    fill-opacity: 0.1;
+    stroke-width: 1.5px;
+  }
 
-.edgePath path.path {
-  stroke: #333;
-  stroke-width: 1.5px;
-  fill: none;
-}`;
+  svg :global(.edgePath path.path) {
+    stroke: #333;
+    stroke-width: 1.5px;
+    fill: none;
+  }
+`;
 
 const render = dagreD3.render();
 
@@ -81,7 +83,7 @@ class DagreDot extends React.Component {
     const { width, height } = this.props;
     return (
       <svg ref={this.graph} width={width} height={height}>
-        <style type="text/css">{css}</style>
+        <style jsx>{styles}</style>
       </svg>
     );
   }
